@@ -12,6 +12,30 @@ import DepositPage from "./pages/DepositPage";
 import DepositQRPage from "./pages/DepositQRPage";
 import DepositUploadPage from "./pages/DepositUploadPage";
 
+// Common layout for all protected pages (Navbar + content wrapper)
+function ProtectedLayout({ children }) {
+  return (
+    <ProtectedRoute>
+      <div
+        style={{
+          minHeight: "100vh",
+          backgroundColor: "#020617",
+        }}
+      >
+        <Navbar />
+        <div
+          style={{
+            minHeight: "calc(100vh - 56px)",
+            boxSizing: "border-box",
+          }}
+        >
+          {children}
+        </div>
+      </div>
+    </ProtectedRoute>
+  );
+}
+
 function App() {
   return (
     <Routes>
@@ -23,12 +47,9 @@ function App() {
       <Route
         path="/home"
         element={
-          <ProtectedRoute>
-            <>
-              <Navbar />
-              <HomePage />
-            </>
-          </ProtectedRoute>
+          <ProtectedLayout>
+            <HomePage />
+          </ProtectedLayout>
         }
       />
 
@@ -36,12 +57,9 @@ function App() {
       <Route
         path="/tournament/1v1-tdm"
         element={
-          <ProtectedRoute>
-            <>
-              <Navbar />
-              <TdmJoinPage />
-            </>
-          </ProtectedRoute>
+          <ProtectedLayout>
+            <TdmJoinPage />
+          </ProtectedLayout>
         }
       />
 
@@ -49,12 +67,9 @@ function App() {
       <Route
         path="/joined"
         element={
-          <ProtectedRoute>
-            <>
-              <Navbar />
-              <JoinedPage />
-            </>
-          </ProtectedRoute>
+          <ProtectedLayout>
+            <JoinedPage />
+          </ProtectedLayout>
         }
       />
 
@@ -62,12 +77,9 @@ function App() {
       <Route
         path="/profile"
         element={
-          <ProtectedRoute>
-            <>
-              <Navbar />
-              <ProfilePage />
-            </>
-          </ProtectedRoute>
+          <ProtectedLayout>
+            <ProfilePage />
+          </ProtectedLayout>
         }
       />
 
@@ -75,12 +87,9 @@ function App() {
       <Route
         path="/deposit"
         element={
-          <ProtectedRoute>
-            <>
-              <Navbar />
-              <DepositPage />
-            </>
-          </ProtectedRoute>
+          <ProtectedLayout>
+            <DepositPage />
+          </ProtectedLayout>
         }
       />
 
@@ -88,12 +97,9 @@ function App() {
       <Route
         path="/deposit/qr"
         element={
-          <ProtectedRoute>
-            <>
-              <Navbar />
-              <DepositQRPage />
-            </>
-          </ProtectedRoute>
+          <ProtectedLayout>
+            <DepositQRPage />
+          </ProtectedLayout>
         }
       />
 
@@ -101,12 +107,9 @@ function App() {
       <Route
         path="/deposit/upload"
         element={
-          <ProtectedRoute>
-            <>
-              <Navbar />
-              <DepositUploadPage />
-            </>
-          </ProtectedRoute>
+          <ProtectedLayout>
+            <DepositUploadPage />
+          </ProtectedLayout>
         }
       />
 
