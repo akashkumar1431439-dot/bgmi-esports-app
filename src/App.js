@@ -11,8 +11,9 @@ import Navbar from "./components/Navbar";
 import DepositPage from "./pages/DepositPage";
 import DepositQRPage from "./pages/DepositQRPage";
 import DepositUploadPage from "./pages/DepositUploadPage";
+import BottomNav from "./components/BottomNav"; // NEW
 
-// Common layout for all protected pages (Navbar + content wrapper)
+// Common layout for all protected pages (Navbar + content + bottom nav)
 function ProtectedLayout({ children }) {
   return (
     <ProtectedRoute>
@@ -20,6 +21,9 @@ function ProtectedLayout({ children }) {
         style={{
           minHeight: "100vh",
           backgroundColor: "#020617",
+          position: "relative",
+          paddingBottom: 56, // bottom nav ke liye jagah
+          boxSizing: "border-box",
         }}
       >
         <Navbar />
@@ -31,6 +35,7 @@ function ProtectedLayout({ children }) {
         >
           {children}
         </div>
+        <BottomNav />
       </div>
     </ProtectedRoute>
   );
