@@ -6,7 +6,24 @@ body,
   padding: 0;
 }
 
+/* Zoom lock + text autosize control */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Base font + background */
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #020617;
+  color: #e5e7eb;
+}
+
+/* Buttons / inputs readable so zoom ki need na pade */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 16px;
 }
