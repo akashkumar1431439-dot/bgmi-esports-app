@@ -16,6 +16,8 @@ function BottomNav() {
     fontWeight: active ? 700 : 500,
     color: active ? "#ffffff" : "#e5e7eb",
     opacity: active ? 1 : 0.75,
+    background: "transparent",
+    border: "none",
   });
 
   const iconDotStyle = (active) => ({
@@ -40,20 +42,13 @@ function BottomNav() {
         alignItems: "stretch",
         justifyContent: "space-between",
         zIndex: 30,
-        // Desktop par hide, mobile par show (simple heuristic)
         maxWidth: 640,
         margin: "0 auto",
-        right: 0,
-        left: 0,
       }}
     >
       <button
         onClick={() => navigate("/home")}
-        style={{
-          ...itemStyle(isActive("/home")),
-          background: "transparent",
-          border: "none",
-        }}
+        style={itemStyle(isActive("/home"))}
       >
         <div style={iconDotStyle(isActive("/home"))} />
         Home
@@ -61,11 +56,7 @@ function BottomNav() {
 
       <button
         onClick={() => navigate("/joined")}
-        style={{
-          ...itemStyle(isActive("/joined")),
-          background: "transparent",
-          border: "none",
-        }}
+        style={itemStyle(isActive("/joined"))}
       >
         <div style={iconDotStyle(isActive("/joined"))} />
         Joined
@@ -73,11 +64,7 @@ function BottomNav() {
 
       <button
         onClick={() => navigate("/deposit")}
-        style={{
-          ...itemStyle(isActive("/deposit")),
-          background: "transparent",
-          border: "none",
-        }}
+        style={itemStyle(isActive("/deposit"))}
       >
         <div style={iconDotStyle(isActive("/deposit"))} />
         Deposit
@@ -85,11 +72,7 @@ function BottomNav() {
 
       <button
         onClick={() => navigate("/profile")}
-        style={{
-          ...itemStyle(isActive("/profile")),
-          background: "transparent",
-          border: "none",
-        }}
+        style={itemStyle(isActive("/profile"))}
       >
         <div style={iconDotStyle(isActive("/profile"))} />
         Profile
