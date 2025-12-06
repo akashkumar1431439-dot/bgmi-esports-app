@@ -14,11 +14,17 @@ function Navbar() {
 
   const isActive = (path) => location.pathname.startsWith(path);
 
+  const linkBaseStyle = (active) => ({
+    color: active ? "#ffffff" : "#e5e7eb",
+    textDecoration: "none",
+    whiteSpace: "nowrap",
+  });
+
   return (
     <nav
       style={{
         height: 56,
-        padding: "0 12px", // mobile ke liye kam padding
+        padding: "0 12px",
         background: "#020617cc",
         backdropFilter: "blur(12px)",
         borderBottom: "1px solid #1e293b",
@@ -47,26 +53,20 @@ function Navbar() {
         BGMI ESPORTS
       </div>
 
-      {/* Right links */}
+      {/* Right: all nav buttons, responsive */}
       <div
         style={{
           display: "flex",
-          flexWrap: "wrap", // chhoti screen par next line me aa sakta hai
-          gap: 12,
+          flexWrap: "wrap", // mobile pe 2 line tak aa sakte hain
+          rowGap: 4,
+          columnGap: 12,
           fontSize: 13,
           alignItems: "center",
           justifyContent: "flex-end",
           maxWidth: "100%",
         }}
       >
-        <Link
-          to="/home"
-          style={{
-            color: isActive("/home") ? "#ffffff" : "#e5e7eb",
-            textDecoration: "none",
-            whiteSpace: "nowrap",
-          }}
-        >
+        <Link to="/home" style={linkBaseStyle(isActive("/home"))}>
           Home
         </Link>
 
@@ -74,36 +74,15 @@ function Navbar() {
           Tournaments (soon)
         </span>
 
-        <Link
-          to="/joined"
-          style={{
-            color: isActive("/joined") ? "#ffffff" : "#e5e7eb",
-            textDecoration: "none",
-            whiteSpace: "nowrap",
-          }}
-        >
+        <Link to="/joined" style={linkBaseStyle(isActive("/joined"))}>
           Joined
         </Link>
 
-        <Link
-          to="/deposit"
-          style={{
-            color: isActive("/deposit") ? "#ffffff" : "#e5e7eb",
-            textDecoration: "none",
-            whiteSpace: "nowrap",
-          }}
-        >
+        <Link to="/deposit" style={linkBaseStyle(isActive("/deposit"))}>
           Deposit
         </Link>
 
-        <Link
-          to="/profile"
-          style={{
-            color: isActive("/profile") ? "#ffffff" : "#e5e7eb",
-            textDecoration: "none",
-            whiteSpace: "nowrap",
-          }}
-        >
+        <Link to="/profile" style={linkBaseStyle(isActive("/profile"))}>
           Profile
         </Link>
 
