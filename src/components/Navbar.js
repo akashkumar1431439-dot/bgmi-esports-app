@@ -53,11 +53,11 @@ function Navbar() {
         BGMI ESPORTS
       </div>
 
-      {/* Right: all nav buttons, responsive */}
+      {/* Right links: Home + Joined + Deposit + Profile + Logout */}
       <div
         style={{
           display: "flex",
-          flexWrap: "wrap", // mobile pe 2 line tak aa sakte hain
+          flexWrap: "wrap",
           rowGap: 4,
           columnGap: 12,
           fontSize: 13,
@@ -69,10 +69,6 @@ function Navbar() {
         <Link to="/home" style={linkBaseStyle(isActive("/home"))}>
           Home
         </Link>
-
-        <span style={{ color: "#6b7280", whiteSpace: "nowrap" }}>
-          Tournaments (soon)
-        </span>
 
         <Link to="/joined" style={linkBaseStyle(isActive("/joined"))}>
           Joined

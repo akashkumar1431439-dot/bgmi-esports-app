@@ -39,7 +39,7 @@ function HomePage() {
         backgroundRepeat: "no-repeat",
         backgroundColor: "#020617",
         color: "#e5e7eb",
-        padding: "24px 16px",          // mobile ke liye thoda kam
+        padding: "24px 16px",
         boxSizing: "border-box",
       }}
     >
@@ -211,7 +211,7 @@ function HomePage() {
               <button
                 style={{
                   marginTop: 4,
-                  width: "100%",              // mobile pe full width button
+                  width: "100%",
                   padding: "8px 14px",
                   borderRadius: 999,
                   border: "none",
