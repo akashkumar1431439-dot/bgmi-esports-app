@@ -18,7 +18,7 @@ function Navbar() {
     <nav
       style={{
         height: 56,
-        padding: "0 32px",
+        padding: "0 12px", // mobile ke liye kam padding
         background: "#020617cc",
         backdropFilter: "blur(12px)",
         borderBottom: "1px solid #1e293b",
@@ -29,30 +29,57 @@ function Navbar() {
         position: "sticky",
         top: 0,
         zIndex: 10,
+        boxSizing: "border-box",
+        width: "100%",
+        maxWidth: "100%",
+        overflowX: "hidden",
       }}
     >
-      <div style={{ fontWeight: 700, fontSize: 18, color: "#22c55e" }}>
+      {/* Left logo */}
+      <div
+        style={{
+          fontWeight: 700,
+          fontSize: 16,
+          color: "#22c55e",
+          whiteSpace: "nowrap",
+        }}
+      >
         BGMI ESPORTS
       </div>
 
-      <div style={{ display: "flex", gap: 20, fontSize: 14, alignItems: "center" }}>
+      {/* Right links */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap", // chhoti screen par next line me aa sakta hai
+          gap: 12,
+          fontSize: 13,
+          alignItems: "center",
+          justifyContent: "flex-end",
+          maxWidth: "100%",
+        }}
+      >
         <Link
           to="/home"
           style={{
             color: isActive("/home") ? "#ffffff" : "#e5e7eb",
             textDecoration: "none",
+            whiteSpace: "nowrap",
           }}
         >
           Home
         </Link>
 
-        <span style={{ color: "#6b7280" }}>Tournaments (soon)</span>
+        <span style={{ color: "#6b7280", whiteSpace: "nowrap" }}>
+          Tournaments (soon)
+        </span>
 
         <Link
           to="/joined"
           style={{
             color: isActive("/joined") ? "#ffffff" : "#e5e7eb",
             textDecoration: "none",
+            whiteSpace: "nowrap",
           }}
         >
           Joined
@@ -63,6 +90,7 @@ function Navbar() {
           style={{
             color: isActive("/deposit") ? "#ffffff" : "#e5e7eb",
             textDecoration: "none",
+            whiteSpace: "nowrap",
           }}
         >
           Deposit
@@ -73,6 +101,7 @@ function Navbar() {
           style={{
             color: isActive("/profile") ? "#ffffff" : "#e5e7eb",
             textDecoration: "none",
+            whiteSpace: "nowrap",
           }}
         >
           Profile
@@ -81,14 +110,14 @@ function Navbar() {
         <button
           onClick={handleLogout}
           style={{
-            marginLeft: 8,
-            padding: "6px 14px",
+            padding: "6px 12px",
             borderRadius: 999,
             border: "none",
             background: "#ef4444",
             color: "#fff",
             cursor: "pointer",
-            fontSize: 13,
+            fontSize: 12,
+            whiteSpace: "nowrap",
           }}
         >
           Logout
