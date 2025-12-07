@@ -65,10 +65,9 @@ function JoinedPage() {
     <div
       style={{
         minHeight: "calc(100vh - 56px)",
-        // background almost full‑bright image + very light overlay
         backgroundImage:
           "url('/images/neon_bgmi_logo.png'), radial-gradient(circle at top, rgba(15,23,42,0.65), rgba(15,23,42,0.9))",
-        backgroundBlendMode: "screen", // image bright + overlay soft
+        backgroundBlendMode: "screen",
         backgroundSize: "cover",
         backgroundPosition: "center",
         color: "#e5e7eb",
@@ -251,18 +250,7 @@ function JoinedPage() {
               gap: 10,
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                gap: 12,
-                fontSize: 12,
-                color: "#9ca3af",
-              }}
-            >
-              <span>Entry: ₹{t.entryFee || 10}</span>
-              <span>Prize: ₹{t.prize || 30}</span>
-              <span>Mode: TDM • Warehouse</span>
-            </div>
+            {/* Entry / Prize / Mode line removed */}
 
             <div
               style={{

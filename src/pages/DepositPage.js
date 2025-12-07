@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { auth } from "../firebase";
 
-const AMOUNTS = [100, 200, 400, 500, 700, 900, 2000, 3000, 5000];
+const AMOUNTS = [50, 100, 200, 300, 400, 500, 600, 700];
 
 function DepositPage() {
   const user = auth.currentUser;
@@ -101,13 +101,6 @@ function DepositPage() {
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
-
-          <p style={{ fontSize: 12, marginBottom: 4 }}>
-            <span style={{ color: "#9ca3af" }}>UPI ID:</span>{" "}
-            <span style={{ color: "#22c55e", fontWeight: 600 }}>
-              yourname@upi
-            </span>
-          </p>
 
           <p
             style={{
@@ -214,7 +207,10 @@ function DepositPage() {
             UPI‑QR dikhega, jisme tum payment karoge. <br />
             3. Payment complete hone ke baad tumse ek alag page par{" "}
             <strong>payment ka screenshot / details</strong> maange jayenge.
-            Admin verify karke utne hi coins tumhare wallet me add karega.
+            Admin verify karke utne hi paise tumhare wallet me add kar diye
+            jayenge. <br />
+            4. Tension lene ki jarurat nahi hai, aapke paise safely wallet me
+            add kar diye jayenge. App real hai.
           </p>
         </div>
 

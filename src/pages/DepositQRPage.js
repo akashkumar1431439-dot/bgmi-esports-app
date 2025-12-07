@@ -1,4 +1,3 @@
-// src/pages/DepositQRPage.js
 import { useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 
@@ -17,7 +16,6 @@ function DepositQRPage() {
       <div
         style={{
           minHeight: "calc(100vh - 56px)",
-          // yahan bhi same BG chahiye to image use karo
           backgroundImage: "url('/images/scanpay_bg.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -47,7 +45,6 @@ function DepositQRPage() {
     <div
       style={{
         minHeight: "calc(100vh - 56px)",
-        // YEHAAN PNG BACKGROUND LAGA DIYA
         backgroundImage: "url('/images/scanpay_bg.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -89,18 +86,11 @@ function DepositQRPage() {
 
         <p
           style={{
-            fontSize: 13,
-            color: "#e5e7eb",
-            fontWeight: 500,
-            marginBottom: 4,
+            fontSize: 12,
+            color: "#9ca3af",
+            marginBottom: 16,
           }}
         >
-          UPI ID:{" "}
-          <span style={{ color: "#22c55e" }}>
-            yourname@upi {/* yahan apni real UPI ID likho */}
-          </span>
-        </p>
-        <p style={{ fontSize: 12, color: "#9ca3af", marginBottom: 16 }}>
           Payment complete hone ke baad UPI screen ka{" "}
           <strong>clear screenshot</strong> le lo. Next step me app tumse ye
           screenshot / details mangega.
