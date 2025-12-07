@@ -1,13 +1,21 @@
 // src/pages/DepositUploadPage.js
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { auth, db, storage } from "../firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { auth, db } from "../firebase";
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
+
+const CLOUD_NAME = "dskbdsvww";
+const UPLOAD_PRESET = "bgmi_esports_ss";
 
 function DepositUploadPage() {
   const user = auth.currentUser;
@@ -58,15 +66,44 @@ function DepositUploadPage() {
 
     setLoading(true);
     try {
-      // 1) Screenshot upload
-      const path = `screenshots/${user.uid}/${Date.now()}_${file.name}`;
-      const fileRef = ref(storage, path);
-      await uploadBytes(fileRef, file);
-      const url = await getDownloadURL(fileRef);
+      // 1) users se sirf custom_id (Player ID) aur display_name lao
+      const userDocRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userDocRef);
 
-      // 2) Firestore me request doc
+      let playerId = "";
+      let playerName = "";
+
+      if (userSnap.exists()) {
+        const u = userSnap.data();
+        playerId = u.custom_id || "";     // AS-0002
+        playerName = u.display_name || ""; // Akash
+      }
+
+      // 2) Cloudinary upload
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", UPLOAD_PRESET);
+
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Cloudinary upload failed");
+      }
+
+      const data = await res.json();
+      const url = data.secure_url;
+
+      // 3) Firestore: topup_requests me sirf ye details save karo
       await addDoc(collection(db, "topup_requests"), {
-        user_uid: user.uid,
+        user_uid: user.uid,       // Firebase UID
+        player_id: playerId,      // AS-0002
+        player_name: playerName,  // Akash
         user_email: user.email,
         amount,
         status: "pending",
@@ -77,8 +114,10 @@ function DepositUploadPage() {
 
       navigate("/deposit/history");
     } catch (err) {
-      console.error("Upload or save failed:", err);
-      setError("Kuch galat ho gaya, thodi der baad dobara try karo.");
+      console.error(err);
+      setError(
+        "Upload ya request me error aaya, thodi der baad dobara try karo."
+      );
     } finally {
       setLoading(false);
     }

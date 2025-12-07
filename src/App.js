@@ -11,9 +11,30 @@ import Navbar from "./components/Navbar";
 import DepositPage from "./pages/DepositPage";
 import DepositQRPage from "./pages/DepositQRPage";
 import DepositUploadPage from "./pages/DepositUploadPage";
-import BottomNav from "./components/BottomNav"; // NEW
+import BottomNav from "./components/BottomNav";
 
-// Common layout for all protected pages (Navbar + content + bottom nav)
+// Deposit success / history placeholder page
+function DepositHistoryPage() {
+  return (
+    <div
+      style={{
+        minHeight: "calc(100vh - 56px)",
+        background:
+          "radial-gradient(circle at top, #020617 0, #020617 55%, #000 100%)",
+        color: "#e5e7eb",
+        padding: "24px 40px",
+      }}
+    >
+      <h1 style={{ fontSize: 22, marginBottom: 12 }}>Deposit request sent</h1>
+      <p style={{ fontSize: 13, color: "#9ca3af" }}>
+        Admin tumhara screenshot check karega. Agar sab sahi hua to kuch der me
+        wallet balance update ho jayega.
+      </p>
+    </div>
+  );
+}
+
+// Common layout: navbar + content + bottom nav
 function ProtectedLayout({ children }) {
   return (
     <ProtectedRoute>
@@ -22,7 +43,7 @@ function ProtectedLayout({ children }) {
           minHeight: "100vh",
           backgroundColor: "#020617",
           position: "relative",
-          paddingBottom: 56, // bottom nav ke liye jagah
+          paddingBottom: 56,
           boxSizing: "border-box",
         }}
       >
@@ -78,7 +99,7 @@ function App() {
         }
       />
 
-      {/* Profile page */}
+      {/* Profile */}
       <Route
         path="/profile"
         element={
@@ -88,7 +109,7 @@ function App() {
         }
       />
 
-      {/* Deposit amount select page */}
+      {/* Deposit amount select */}
       <Route
         path="/deposit"
         element={
@@ -98,7 +119,7 @@ function App() {
         }
       />
 
-      {/* QR page (Step 2) */}
+      {/* Deposit QR */}
       <Route
         path="/deposit/qr"
         element={
@@ -108,7 +129,7 @@ function App() {
         }
       />
 
-      {/* Upload details page (Step 3) */}
+      {/* Deposit upload */}
       <Route
         path="/deposit/upload"
         element={
@@ -118,7 +139,17 @@ function App() {
         }
       />
 
-      {/* Default */}
+      {/* Deposit history / success */}
+      <Route
+        path="/deposit/history"
+        element={
+          <ProtectedLayout>
+            <DepositHistoryPage />
+          </ProtectedLayout>
+        }
+      />
+
+      {/* Default redirect */}
       <Route path="/" element={<Navigate to="/home" replace />} />
     </Routes>
   );
